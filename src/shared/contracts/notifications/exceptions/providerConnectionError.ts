@@ -1,0 +1,1 @@
+export class ProviderConnectionError extends Error {}
