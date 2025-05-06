@@ -1,6 +1,6 @@
 import { Translation } from "../../../shared/contracts/translations/entities/translation";
 import { TranslationRepository } from "../../../shared/contracts/translations/infrastructure/translation.repository";
-import { UseCase } from "../../../shared/contracts/utils/useCase";
+import { UseCase } from "../../../shared/contracts/domain/useCase";
 import { TranslationRequest } from "../contracts/translationRequest";
 
 /**

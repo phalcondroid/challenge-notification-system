@@ -1,14 +1,17 @@
 import { Notification } from "../../../shared/contracts/notifications/entities/notification";
 import { NotificationStatus } from "../../../shared/contracts/notifications/enum/notificationStatus.enum";
 import { NotificationType } from "../../../shared/contracts/notifications/enum/notificationType.enum";
-import { UseCase } from "../../../shared/contracts/utils/useCase";
+import { UseCase } from "../../../shared/contracts/domain/useCase";
 import { MailerProvider } from "../infra/providers/mailerProvider";
 import { PushProvider } from "../infra/providers/pushProvider";
+import { TranslationManager } from "../../../shared/contracts/translations/facade/translationManager";
+import { injectable } from "../../../shared/decorators/di";
 
 /**
  * Business logic when is sending an notification 
  */
-export class SendNotification implements UseCase<Notification, NotificationStatus> {
+@injectable()
+export class SendNotificationUseCase implements UseCase<Notification, NotificationStatus> {
 
   /**
    * Injection through dependency injector
@@ -24,6 +27,7 @@ export class SendNotification implements UseCase<Notification, NotificationStatu
    * @returns NotificationStatus
    */
   public call(notificationRequest: Notification): NotificationStatus {
+
     if (notificationRequest.type !== NotificationType.push) {
       return this.mailer.send(
         notificationRequest.title, 
@@ -32,7 +36,7 @@ export class SendNotification implements UseCase<Notification, NotificationStatu
       );
     }
     return this.pusher.send(
-      notificationRequest.title, 
+      notificationRequest.title,
       notificationRequest.body,
       notificationRequest.id
     );
