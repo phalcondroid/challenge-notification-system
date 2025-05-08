@@ -55,7 +55,7 @@ export class MatchUseCase implements UseCase<any, boolean> {
       }
     }));
 
-    this.eventHandler.listen("battleFinish", (response) => ({
+    this.eventHandler.subscribe("battleFinish", (response) => ({
       response: (battle: Battle) => {
         switch (battle.result) {
           case GameEvents.passTurorial:
