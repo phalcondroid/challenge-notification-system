@@ -39,7 +39,6 @@ This repository implements a **real-time, event-driven notification system** for
 /src
   /achievements
     /domain
-      - logicBusiness/
       - useCases/
       - entities/
       - rules/
@@ -70,7 +69,7 @@ This repository implements a **real-time, event-driven notification system** for
     /domain
     /infra
 
-/shared
+/shared (abstract contracts)
   - interfaces/
   - contracts/
   - enums/
