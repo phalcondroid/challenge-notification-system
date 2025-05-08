@@ -14,6 +14,7 @@ import { Locale } from "../../../shared/contracts/translations/enums/locale.enum
 import { LevelUpUseCase } from "../../../achievements/domain/useCases/levelUpUseCase";
 import { AchievementType } from "../../../shared/contracts/achievements/enums/achievementType.enum";
 import { ChallengeCompletedUseCase } from "../../../achievements/domain/useCases/challengedCompleteUseCase";
+import { LevelDownUseCase } from "../../../achievements/domain/useCases/levelDownUseCase";
 
 /**
  * Logic business when game match players
@@ -24,7 +25,7 @@ export class MatchUseCase implements UseCase<any, boolean> {
     private readonly notifications: UseCase<Notification, NotificationStatus>,
     private readonly translations: TranslationManager,
     private readonly levelUpUseCase: LevelUpUseCase,
-    private readonly levelDownUseCase: LevelUpUseCase,
+    private readonly levelDownUseCase: LevelDownUseCase,
     private readonly challengeUseCase: ChallengeCompletedUseCase,
   ) {}
 
