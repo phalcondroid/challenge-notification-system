@@ -1,7 +1,7 @@
-import { Translation } from "../shared/contracts/translations/entities/translation";
-import { Locale } from "../shared/contracts/translations/enums/locale.enum";
-import { TranslationManager } from "../shared/contracts/translations/facade/translationManager";
-import { GetKeyUseCase } from "./domain/useCases/getKeyUseCase";
+import { Translation } from "../../shared/contracts/translations/entities/translation";
+import { Locale } from "../../shared/contracts/translations/enums/locale.enum";
+import { TranslationManager } from "../../shared/contracts/translations/facade/translationManager";
+import { GetKeyUseCase } from "./useCases/getKeyUseCase";
 
 /**
  * This class works as facade and is the only one functional worker interface to interact between components.

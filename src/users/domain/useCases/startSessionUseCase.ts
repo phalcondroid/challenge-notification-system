@@ -22,78 +22,12 @@ import { GameEvents } from "../../../shared/contracts/events/enum/gameEvents.enu
 export class StartSessionUseCase implements UseCase<StartSessionRequest, TokenResponse> {
 
   constructor(
-    private readonly userRepo: UserRepository,
-    private readonly notifications: UseCase<Notification, NotificationStatus>,
-    private readonly eventHandler: EventProvider,
-    private readonly translations: TranslationManager
+    private readonly userRepo: UserRepository
   ) {}
   
   public call(request: StartSessionRequest) {
     const user = this.userRepo.get({ username: request.username, pass: request.password});
-
-    /**
-     * Subscribe to achivements
-     */
-    this.eventHandler.subscribe<Achievements>(
-      `${AchievementEvents.challengeCompleted}${user.id}`, 
-      (payload: Achievements) => {
-        // Translation for notification content
-        const title = this.translations.get(payload.achievement);
-        const body = this.translations.get(payload.id);
-        this.notifications.call({
-          id: v4(),
-          userId: user.id,
-          title: title.value,
-          body: body.value,
-          type: NotificationType.push,
-          rule: payload.achievement,
-          createdAt: new Date(),
-          locale: Locale.en
-        });
-      });
-
-    /**
-     * Subscribe to Social friend request
-     */
-    this.eventHandler.subscribe<User>(
-      `${SocialEvents.friendRequest}${user.id}`, 
-      (payload: User) => {
-        // Translation for notification content
-        const title = this.translations.get(SocialEvents.friendRequest, payload.name);
-        const body = this.translations.get(SocialEvents.friendRequest);
-        this.notifications.call({
-          id: v4(),
-          userId: payload.id,
-          title: title.value,
-          body: body.value,
-          type: NotificationType.push,
-          rule: SocialEvents.friendRequest,
-          createdAt: new Date(),
-          locale: Locale.en
-        });
-      });
-    
-    /**
-     * Subscribe to Game event level up
-     */
-    this.eventHandler.subscribe<User>(
-      `${GameEvents.levelUp}${user.id}`,
-      (payload: User) => {
-        // Translation for notification content
-        const title = this.translations.get(GameEvents.levelUp, payload.level);
-        const body = this.translations.get(GameEvents.levelUp, payload.level);
-        this.notifications.call({
-          id: v4(),
-          userId: payload.id,
-          title: title.value,
-          body: body.value,
-          type: NotificationType.push,
-          rule: GameEvents.levelUp,
-          createdAt: new Date(),
-          locale: Locale.en
-        });
-      });
-
+    // register the user sesion in the historyu
     return {
       token: v4(),
       user

@@ -5,5 +5,6 @@ export enum GameEvents {
   matched,
   lostMatch,
   winMatch,
-  drawMatch
+  drawMatch,
+  passTurorial
 }

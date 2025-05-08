@@ -1,4 +1,4 @@
 export enum UserPreferences {
-  GameNotifications,
-  SocialNotifications
+  gameNotifications,
+  socialNotifications
 }

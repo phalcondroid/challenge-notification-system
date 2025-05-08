@@ -3,5 +3,7 @@ export enum AchievementType {
   passSuccessfullyTutorial,
   winFirstBattle,
   winVsAi,
-  winVsHumanPlayer
+  winVsHumanPlayer,
+  primeReward,
+  basicReward
 }

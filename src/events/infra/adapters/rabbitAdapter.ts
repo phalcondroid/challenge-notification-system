@@ -1,6 +1,11 @@
 import { EventAdapter } from "../../../shared/contracts/events/adapters/eventAdapter";
 
 export class RabbitAdapter implements EventAdapter {
+  
+  listen<T>(channel: string, worker: (response: any) => void) {
+    throw new Error("Method not implemented.");
+  }
+
   connect(): boolean {
     throw new Error("Method not implemented.");
   }

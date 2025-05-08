@@ -1,5 +1,4 @@
 import { v4 } from "uuid";
-import { Rule } from "../../../shared/contracts/enums/rules.enum";
 import { Notification } from "../../../shared/contracts/notifications/entities/notification";
 import { NotificationType } from "../../../shared/contracts/notifications/enum/notificationType.enum";
 import { Locale } from "../../../shared/contracts/translations/enums/locale.enum";
@@ -7,7 +6,7 @@ import { Locale } from "../../../shared/contracts/translations/enums/locale.enum
 export class NotificationModel implements Notification {
   id: string;
   type: NotificationType;
-  rule: Rule;
+  rule: number;
   title: string;
   body: string;
   locale: Locale;
@@ -22,4 +21,5 @@ export class NotificationModel implements Notification {
     this.locale = param.locale;
     this.createdAt = param.createdAt;
   }
+  userId: string;
 }

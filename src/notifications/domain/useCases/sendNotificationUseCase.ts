@@ -27,7 +27,6 @@ export class SendNotificationUseCase implements UseCase<Notification, Notificati
    * @returns NotificationStatus
    */
   public call(notificationRequest: Notification): NotificationStatus {
-
     if (notificationRequest.type !== NotificationType.push) {
       return this.mailer.send(
         notificationRequest.title, 

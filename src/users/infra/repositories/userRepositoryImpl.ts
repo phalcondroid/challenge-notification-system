@@ -9,6 +9,10 @@ export class UserRepositoryImpl implements UserRepository {
 
   constructor(private readonly database: DatabaseClient) {}
 
+  public updateFollowers(id: any, user: User): boolean {
+    return this.database.update({ id }, user);
+  }
+
   /**
    * Update user preferences
    * @param id 
